@@ -86,7 +86,7 @@ void clustering_dt() {
   std::vector<PlotObj*> plots = {&fjet, &ftrack, &hs_track, &pu_track, &pu_frac, &recovtx_z};
   for (auto& plot: plots)
     plot->plot_postprocessing();
-  std::cout << "FINISHED CREATING " << std::endl;
+  std::cout << "FINISHED CREATING" << std::endl;
 
   for (auto& plot: plots)
     plot->plot_logic(canvas);
@@ -109,5 +109,5 @@ void clustering_dt() {
   canvas->Print(Form("%s",hs_pu_fname));
   canvas->Print(Form("%s]",hs_pu_fname));
 
-  std::cout << "ALL DONE :3" << std::endl;
+  std::cout << "ALL DONE" << std::endl;
 }

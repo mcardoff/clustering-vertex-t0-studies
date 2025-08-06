@@ -25,4 +25,15 @@ There will be several PDF files as the output, here is a table summarizing:
 | hgtdtimes_resos_*yscale*.pdf | Inclusive (all used events) plots showing the resolution                                                                       |
 | hgtdtimes_purity.pdf         | Inclusive plots showing the purity of the selected algorithm (what percent of tracks in selected cluster are HS?)              |
 |------------------------------+--------------------------------------------------------------------------------------------------------------------------------|
+The Variables Which we are looking at:
+| variable in file name | full name                     | description                                         |
+|-----------------------+-------------------------------+-----------------------------------------------------|
+| nfjet                 | N Forward Jets                | Number of forward jets in the event                 |
+| ntrack                | N Forward Tracks              | Number of forward tracks in the event               |
+| nhstrack              | N Forward Hard Scatter Tracks | Number of forward Hard Scatter tracks in the event  |
+| nputrack              | N Forward Pile Up Tracks      | Number of forward Pile Up tracks in the event       |
+| pufrac                | Pile Up Fraction              | Ratio of Number of PU Tracks to All Tracks in event |
+| vtx_z                 | Reco Vertex z                 | z Coordinate of the Primary Vertex                  |
+|-----------------------+-------------------------------+-----------------------------------------------------|
+The variables with the most information tend to be =nhstrack= and =pufrac=
 Feel free to email me (mcardiff@brandeis.edu) if something breaks
