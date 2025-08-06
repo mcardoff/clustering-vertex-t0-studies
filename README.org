@@ -1,0 +1,28 @@
+#+TITLE:Cone Clustering Vertex Timing
+#+AUTHOR:Michael Cardiff
+* Requirements
+Running requires =root= and the proper ntuple files, the most current version is the following, available with =rucio= on lxplus:
+#+begin_src bash
+rucio-get user.mcardiff:user.mcardiff.mc21_14TeV.600026.PhH7EG_NNPDF3_AZNLO_VBFH125_ZZ4nu_MET75.SuperNtuple.e8481_s4290_r15583.20250728_try2_Output
+#+end_src
+This is a specific set of data extracted from a more comprehensive VBF Higgs to invisible sample, and contains all the necessary timing information. The full dataset is about 60 GB, if you can accomodate this on your machine, great, if not running on lxplus or even the UChicago server should be fine. If you cannot access =rucio= let me know, I can upload one of the samples to CERNBox
+* Running
+The script assumes you have the ntuple in the same directory, but in a folder called =ntuple=, if you want to store it elsewhere, change the path in this line in the code:
+#+begin_example
+setup_chain(chain, "./ntuple/");
+#+end_example
+Ensuring this is here, you can simply run the script in ROOT's batch mode:
+#+begin_src bash
+root -l -q -b clustering_dt.cxx
+#+end_src
+By Default the script will print out a progress reminder every 1000 events. If you have INFO turned on, it will show the files printing to
+* The Output
+There will be several PDF files as the output, here is a table summarizing:
+| file                         | description                                                                                                                    |
+|------------------------------+--------------------------------------------------------------------------------------------------------------------------------|
+| hgtdtimes_*variable*.pdf     | Several plots, summarizing the calculated efficiency, resolution, purity, 2D Histograms as well as slices of the 2D histograms |
+| hgtdtimes_hs_v_pu.pdf        | 2D Histogram showing Number of Pile-Up tracks vs Number of Hard Scatter tracks, used as a sanity check sometimes               |
+| hgtdtimes_resos_*yscale*.pdf | Inclusive (all used events) plots showing the resolution                                                                       |
+| hgtdtimes_purity.pdf         | Inclusive plots showing the purity of the selected algorithm (what percent of tracks in selected cluster are HS?)              |
+|------------------------------+--------------------------------------------------------------------------------------------------------------------------------|
+Feel free to email me (mcardiff@brandeis.edu) if something breaks
