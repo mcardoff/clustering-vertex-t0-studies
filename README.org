@@ -3,7 +3,7 @@
 * Requirements
 Running requires =root= and the proper ntuple files, the most current version is the following, available with =rucio= on lxplus:
 #+begin_src bash
-rucio-get user.mcardiff:user.mcardiff.mc21_14TeV.600026.PhH7EG_NNPDF3_AZNLO_VBFH125_ZZ4nu_MET75.SuperNtuple.e8481_s4290_r15583.20250728_try2_Output
+rucio get user.mcardiff:user.mcardiff.mc21_14TeV.600026.PhH7EG_NNPDF3_AZNLO_VBFH125_ZZ4nu_MET75.SuperNtuple.e8481_s4290_r15583.20250728_try2_Output
 #+end_src
 This is a specific set of data extracted from a more comprehensive VBF Higgs to invisible sample, and contains all the necessary timing information. The full dataset is about 60 GB, if you can accomodate this on your machine, great, if not running on lxplus or even the UChicago server should be fine. If you cannot access =rucio= let me know, I can upload one of the samples to CERNBox
 * Running
