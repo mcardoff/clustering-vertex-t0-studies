@@ -27,19 +27,21 @@ Essentially, if there are more than 10K events which pass the basic event-level 
 If this is still too slow for your taste, let me know and I can help you set it up as a compiled CMake project as opposed to a root script
 * The Output
 There will be several PDF files as the output, here is a table summarizing the relevant ones:
+
 | file                         | description                                                                                                       |
 |------------------------------+-------------------------------------------------------------------------------------------------------------------|
 | hgtd_trkptz_*variable*.pdf   | Several plots, summarizing the calculated efficiency and resolution                                               |
 | hgtdtimes_resos_*yscale*.pdf | Inclusive (all used events) plots showing the resolution                                                          |
 |------------------------------+-------------------------------------------------------------------------------------------------------------------|
 The Variables Which we are looking at:
+
 | variable in file name | full name                     | description                                         |
 |-----------------------+-------------------------------+-----------------------------------------------------|
-| nfjet                 | N Forward Jets                | Number of forward jets in the event                 |
-| ntrack                | N Forward Tracks              | Number of forward tracks in the event               |
-| nhstrack              | N Forward Hard Scatter Tracks | Number of forward Hard Scatter tracks in the event  |
-| nputrack              | N Forward Pile Up Tracks      | Number of forward Pile Up tracks in the event       |
-| pufrac                | Pile Up Fraction              | Ratio of Number of PU Tracks to All Tracks in event |
+| fjet                  | n Forward Jets                | Number of forward jets in the event                 |
+| ftrack                | n Forward Tracks              | Number of forward tracks in the event               |
+| hs_track              | n Forward Hard Scatter Tracks | Number of forward Hard Scatter tracks in the event  |
+| pu_track              | n Forward Pile Up Tracks      | Number of forward Pile Up tracks in the event       |
+| pu_frac               | Pile Up Fraction              | Ratio of Number of PU Tracks to All Tracks in event |
 |-----------------------+-------------------------------+-----------------------------------------------------|
 The variables with the most information tend to be =nhstrack= and =pufrac=
 Feel free to email me (mcardiff@brandeis.edu) if something breaks
