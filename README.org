@@ -22,9 +22,11 @@ In general, it may take a while to run over all the events you are using, the fu
   if (hgtdtimesMap[Score::TRKPTZ].get("pufrac").hist->Integral() > 10e3)
         break;
 #+end_src
-Essentially, if there are more than 10K events which pass the basic event-level cuts, this will exit the loop and immediately begin the plotting
+Essentially, if there are more than 10K events which pass the basic event-level cuts, this will exit the loop and immediately begin the plotting.
+
+If this is still too slow for your taste, let me know and I can help you set it up as a compiled CMake project as opposed to a root script
 * The Output
-There will be several PDF files as the output, here is a table summarizing:
+There will be several PDF files as the output, here is a table summarizing the relevant ones:
 | file                         | description                                                                                                       |
 |------------------------------+-------------------------------------------------------------------------------------------------------------------|
 | hgtd_trkptz_*variable*.pdf   | Several plots, summarizing the calculated efficiency and resolution                                               |

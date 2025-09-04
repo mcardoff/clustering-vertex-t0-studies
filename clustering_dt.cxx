@@ -10,7 +10,7 @@ void clustering_dt() {
   gStyle->SetOptStat(0);
 
   TChain chain ("ntuple");
-  setupChain(chain, "../ntuple-hgtd/");
+  setupChain(chain, "./ntuple/");
   TTreeReader reader(&chain);
   BranchPointerWrapper branch(reader);
 
