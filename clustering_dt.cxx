@@ -35,8 +35,8 @@ void clustering_dt() {
     Long64_t thisEvnt = chain.GetReadEntry() - chain.GetChainOffset(); // +1 bc its 0 indexed
     Long64_t readNum = chain.GetReadEntry()+1;
 
-    // if (hgtdtimesMap[Score::TRKPTZ].get("pufrac").effTotal->Integral() > 10e3)
-    //   break;
+    if (hgtdtimesMap.at(Score::TRKPTZ).get("pu_frac")->hist->Integral() > 10e3)
+      break;
     
     if (progress && readNum % 1000 == 0)
       std::cout << "Progress: " << readNum << "/" << nEvent << "\n";
