@@ -15,16 +15,21 @@ Ensuring this is here, you can simply run the script in ROOT's batch mode:
 #+begin_src bash
 root -l -q -b clustering_dt.cxx
 #+end_src
-By Default the script will print out a progress reminder every 1000 events. If you have INFO turned on, it will show the files printing to
+By Default the script will print out a progress reminder every 1000 events.
+** Limiting time it takes
+In general, it may take a while to run over all the events you are using, the full dataset I mentioned in the requirements has roughly 100K events, which may be a bit too much in some cases, if you want to limit this, I would simply add the following to the loop in =clustering_dt.cxx=
+#+begin_src c++
+  if (hgtdtimesMap[Score::TRKPTZ].get("pufrac").hist->Integral() > 10e3)
+        break;
+#+end_src
+Essentially, if there are more than 10K events which pass the basic event-level cuts, this will exit the loop and immediately begin the plotting
 * The Output
 There will be several PDF files as the output, here is a table summarizing:
-| file                         | description                                                                                                                    |
-|------------------------------+--------------------------------------------------------------------------------------------------------------------------------|
-| hgtdtimes_*variable*.pdf     | Several plots, summarizing the calculated efficiency, resolution, purity, 2D Histograms as well as slices of the 2D histograms |
-| hgtdtimes_hs_v_pu.pdf        | 2D Histogram showing Number of Pile-Up tracks vs Number of Hard Scatter tracks, used as a sanity check sometimes               |
-| hgtdtimes_resos_*yscale*.pdf | Inclusive (all used events) plots showing the resolution                                                                       |
-| hgtdtimes_purity.pdf         | Inclusive plots showing the purity of the selected algorithm (what percent of tracks in selected cluster are HS?)              |
-|------------------------------+--------------------------------------------------------------------------------------------------------------------------------|
+| file                         | description                                                                                                       |
+|------------------------------+-------------------------------------------------------------------------------------------------------------------|
+| hgtd_trkptz_*variable*.pdf   | Several plots, summarizing the calculated efficiency and resolution                                               |
+| hgtdtimes_resos_*yscale*.pdf | Inclusive (all used events) plots showing the resolution                                                          |
+|------------------------------+-------------------------------------------------------------------------------------------------------------------|
 The Variables Which we are looking at:
 | variable in file name | full name                     | description                                         |
 |-----------------------+-------------------------------+-----------------------------------------------------|
@@ -33,7 +38,6 @@ The Variables Which we are looking at:
 | nhstrack              | N Forward Hard Scatter Tracks | Number of forward Hard Scatter tracks in the event  |
 | nputrack              | N Forward Pile Up Tracks      | Number of forward Pile Up tracks in the event       |
 | pufrac                | Pile Up Fraction              | Ratio of Number of PU Tracks to All Tracks in event |
-| vtx_z                 | Reco Vertex z                 | z Coordinate of the Primary Vertex                  |
 |-----------------------+-------------------------------+-----------------------------------------------------|
 The variables with the most information tend to be =nhstrack= and =pufrac=
 Feel free to email me (mcardiff@brandeis.edu) if something breaks
