@@ -28,11 +28,11 @@ If this is still too slow for your taste, let me know and I can help you set it 
 * The Output
 There will be several PDF files as the output, here is a table summarizing the relevant ones:
 
-| file                         | description                                                                                                       |
-|------------------------------+-------------------------------------------------------------------------------------------------------------------|
-| hgtd_trkptz_*variable*.pdf   | Several plots, summarizing the calculated efficiency and resolution                                               |
-| hgtdtimes_resos_*yscale*.pdf | Inclusive (all used events) plots showing the resolution                                                          |
-|------------------------------+-------------------------------------------------------------------------------------------------------------------|
+| file                         | description                                                         |
+|------------------------------+---------------------------------------------------------------------|
+| hgtd_trkptz_*variable*.pdf   | Several plots, summarizing the calculated efficiency and resolution |
+| hgtdtimes_resos_*yscale*.pdf | Inclusive (all used events) plots showing the resolution            |
+|------------------------------+---------------------------------------------------------------------|
 The Variables Which we are looking at:
 
 | variable in file name | full name                     | description                                         |

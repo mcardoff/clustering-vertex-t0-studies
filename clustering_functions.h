@@ -8,9 +8,9 @@
 
 namespace MyUtl {
 
-  auto getSmearedTrackTime(
+  double getSmearedTrackTime(
     int idx, double res, BranchPointerWrapper *branch
-  ) -> double {
+  ) {
     int particleIdx = branch->trackToParticle[idx]; // this is anything
     int truthvtxIdx = branch->trackToTruthvtx[idx]; // this is anything
     double tPart = NAN;
@@ -27,9 +27,9 @@ namespace MyUtl {
     return gRandom->Gaus(tPart,smearRes);
   }
   
-  auto getDistanceBetweenClusters(
+  double getDistanceBetweenClusters(
     const Cluster& a, const Cluster& b
-  ) -> double {
+  ) {
     std::vector<double> aVal = a.values;
     std::vector<double> aSig = a.sigmas;
     std::vector<double> bVal = b.values;
@@ -55,9 +55,9 @@ namespace MyUtl {
     return sqrt(dsqr);
   }
 
-  auto mergeClusters(
+  Cluster mergeClusters(
     Cluster a, Cluster b
-  ) -> Cluster {
+  ) {
     Cluster mergedCluster;
     mergedCluster.wasMerged = true;
   
@@ -107,8 +107,8 @@ namespace MyUtl {
     std::vector<Cluster> simpleClusters;
     for (auto idx: trackIndices) {
       if (!checkTimeValid || branch->trackTimeValid[idx] == 1) {
-	double trkTime = NAN;
-	double trkRes = NAN; 
+	double trkTime;
+	double trkRes; 
 	if (useSmearedTimes) {
 	  trkTime = smearedTimesMap.at(idx);
 	  trkRes  = smearedTimeResMap.at(idx);
@@ -147,10 +147,10 @@ namespace MyUtl {
 
       distance = getDistanceBetweenClusters(collection->at(0), collection->at(1));
 
-      for (int i = 0; i < collection->size(); i++) {
-	for (int j = i + 1; j < collection->size(); j++) {
-	  const Cluster& a = collection->at(i);
-	  const Cluster& b = collection->at(j);
+      for (size_t i = 0; i < collection->size(); i++) {
+	for (size_t j = i + 1; j < collection->size(); j++) {
+	  Cluster a = collection->at(i);
+	  Cluster b = collection->at(j);
 
 	  if (a.wasMerged or b.wasMerged)
 	    continue;
@@ -176,11 +176,12 @@ namespace MyUtl {
 	collection->push_back(newCluster);
       } else {
 	if (std::find_if(collection->begin(), collection->end(),
-			 [](const Cluster& a) {return a.wasMerged;}) != collection->end()) {
-	  for (auto & idx : *collection)
-	    idx.wasMerged = false;
-	} else
+			 [](Cluster a) {return a.wasMerged;}) != collection->end()) {
+	  for (int idx=0; idx < collection->size(); ++idx)
+	    collection->at(idx).wasMerged = false;
+	} else {
 	  break;
+	}
       }
       // break;
     } // While
@@ -204,7 +205,7 @@ namespace MyUtl {
 	  i0 = i;
 	}
       }
-      if (i0 == -1) { break; }
+      if (i0 == -1) break;
       
       if (DEBUG) std::cout << "Found Seed\n";
 

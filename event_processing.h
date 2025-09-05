@@ -170,7 +170,7 @@ namespace MyUtl {
 
     // run HGTD Clustering (simultaneous)
     std::vector<Cluster> clustersHGTD =
-      clusterTracksInTime(tracks, branch, 3.0, -1, false, true, false, false);
+      clusterTracksInTime(tracks, branch, 3.0, false, true, -1, false, false);
 
     if (branch->recoVtxValid[0] == 1 and analyses.count(Score::HGTD))
       chosen[Score::HGTD] = chooseHGTDCluster(clustersHGTD, branch);
